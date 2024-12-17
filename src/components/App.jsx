@@ -1,60 +1,37 @@
 import { useState } from "react";
-import Bill from "./Bill.jsx";
+// import Bill from "./Bill.jsx";
 import FriendsList from "./FriendsList.jsx";
-import Header from "./Header.jsx";
+import AddFriend from "./AddFriend.jsx";
 
 const friendsList = [
   {
-    name: "ivan",
-    expense: 20,
-    payed: 5,
+    name: "Ivan",
+    balance: -12,
   },
   {
-    name: "mark",
-    expense: 15,
-    payed: 5,
+    name: "Mark",
+    balance: 0,
   },
   {
-    name: "sarah",
-    expense: 30,
-    payed: 17,
+    name: "Sarah",
+    balance: 22,
   },
 ];
 
 export default function App() {
   const [friends, setFriends] = useState(friendsList);
-  const [bill, setBill] = useState(undefined);
-  const [isOn, setIsOn] = useState(true);
+  // const [bill, setBill] = useState(undefined);
+  // const [isOn, setIsOn] = useState(true);
 
-  function handleToggleBillMenu() {
-    if (!bill > 0) return;
-    setIsOn(!isOn);
+  function handleAddFriend(friend) {
+    setFriends([...friends, friend]);
   }
 
   return (
-    <div className="container">
-      <Header>
-        <h1>Welcome to eat-n-split</h1>
-        <p>Quick way to calculate and split bill among your friends!</p>
-      </Header>
-      <div className="section">
-        <div className="left-section">
-          <Bill
-            bill={bill}
-            onSetBill={setBill}
-            isOn={isOn}
-            onHandleToggleBillMenu={handleToggleBillMenu}
-          />
-        </div>
-        <div className="right-section">
-          <Header>
-            <h1 style={{ fontSize: "17px", textTransform: "none" }}>
-              Friends:
-            </h1>
-          </Header>
-          <button className="btn">Add friend</button>
-          <FriendsList friends={friends} />
-        </div>
+    <div className="main-section">
+      <div className="sidebar">
+        <FriendsList friends={friends} />
+        <AddFriend onHandleAddFriend={handleAddFriend} friends={friends} />
       </div>
     </div>
   );

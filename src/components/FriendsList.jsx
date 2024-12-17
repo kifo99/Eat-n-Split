@@ -5,12 +5,7 @@ export default function FriendsList({ friends }) {
   return (
     <ul className="friends-list">
       {friends.map((friend) => (
-        <Friend
-          name={friend.name}
-          expense={friend.expense}
-          payed={friend.payed}
-          key={friend.name}
-        />
+        <Friend name={friend.name} balance={friend.balance} key={friend.name} />
       ))}
     </ul>
   );
